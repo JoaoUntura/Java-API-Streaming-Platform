@@ -1,0 +1,78 @@
+
+type UserApp{
+    externalId :String
+
+    name:String
+
+    email:String
+
+    picture:String
+
+}
+
+type VideoReview{
+    id:ID
+    externalId:String
+    viewer: String
+    comment: String
+    rating: Float
+    userApp:UserApp
+
+}
+
+type Course{
+    externalId: String
+    title: String
+    thumbNailId:String
+    videoList:[Video!]
+}
+
+
+type Video{
+    externalId: String
+    manifestId:String
+    thumbNailId:String
+    title: String
+    videoReviewList: [VideoReview]
+}
+
+type VideoConnection{
+    videos: [Video]
+    endCursor:Int!
+    hasNextPage:Boolean!
+}
+
+type VideoReviewConnection{
+    videosReviews: [VideoReview]
+    endCursor:Int!
+    hasNextPage:Boolean!
+}
+
+input CursorSearch{
+    first:Int!
+    after:Int
+}
+
+input VideoReviewInput {
+
+    viewer: String
+    comment: String
+    rating: Float
+    videoExternalId: String
+
+}
+
+type Query{
+    userApp:UserApp
+    videos(input:CursorSearch) : VideoConnection
+    getVideoReviews(input:CursorSearch, videoId:String) : VideoReviewConnection
+    courses: [Course]
+    courseById(externalId:String) : Course
+}
+
+type Mutation{
+    deleteVideo(externalId:String) : Boolean
+    createVideoReview(input:VideoReviewInput) : VideoReview
+
+}
+
