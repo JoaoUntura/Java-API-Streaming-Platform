@@ -18,6 +18,7 @@ target/
 *.iws
 *.iml
 *.ipr
+*.env
 
 ### NetBeans ###
 /nbproject/private/
@@ -32,8 +33,8 @@ build/
 ### VS Code ###
 .vscode/
 
-!**/videos
-!**/manifests
-!**/segments
-!**/images
+!videos/*
+!manifests/*
+!segments/*
+!images/*
 
