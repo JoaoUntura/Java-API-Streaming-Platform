@@ -38,6 +38,9 @@ public class UserApp implements UserDetails {
 
     private Role role;
 
+    @OneToMany(mappedBy = "userApp", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Course> courses;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(this.role.toString()));

@@ -36,6 +36,10 @@ public class Course {
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Video> videoList;
 
+    @ManyToOne
+    @JoinColumn(name = "useApp_id")
+    private UserApp userApp;
+
     @CreationTimestamp
     @Column(updatable = false)
     private Instant created_at;

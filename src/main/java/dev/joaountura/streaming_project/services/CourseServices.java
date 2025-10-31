@@ -1,6 +1,7 @@
 package dev.joaountura.streaming_project.services;
 
 import dev.joaountura.streaming_project.models.Course;
+import dev.joaountura.streaming_project.models.UserApp;
 import dev.joaountura.streaming_project.models.dtos.CourseUploadDTO;
 import dev.joaountura.streaming_project.repositories.CourseRepository;
 
@@ -18,14 +19,20 @@ public class CourseServices {
     @Autowired
     private CourseRepository courseRepository;
 
+    @Autowired
+    private UserServices userServices;
+
     @Transactional
     public List<Course> getAll(){
         return courseRepository.findAll();
     }
 
-    public void createCourseService(CourseUploadDTO courseUploadDTO, String thumbNailId){
+    public void createCourseService(CourseUploadDTO courseUploadDTO, String thumbNailId, String userId){
+
+        UserApp userApp = userServices.findByExternalId(userId).orElseThrow();
 
         Course course = Course.builder()
+                .userApp(userApp)
                 .title(courseUploadDTO.getTitle())
                 .description(courseUploadDTO.getDescription())
                 .thumbNailId(UUID.fromString(thumbNailId))

@@ -37,6 +37,7 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(requests-> requests
                         .requestMatchers("/login/**").permitAll()
+                        .requestMatchers("/graphiql/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .oauth2Login(auth -> auth
@@ -52,7 +53,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(List.of("http://localhost:3000")); // domínio do frontend
+        configuration.setAllowedOrigins(List.of("https://streaming-plataform-frontend-s9gw.vercel.app"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true); // necessário para cookies

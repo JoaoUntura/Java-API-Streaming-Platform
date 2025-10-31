@@ -1,12 +1,10 @@
 
 type UserApp{
     externalId :String
-
     name:String
-
     email:String
-
     picture:String
+    courses:[Course]
 
 }
 
@@ -22,8 +20,10 @@ type VideoReview{
 
 type Course{
     externalId: String
+    description: String
     title: String
     thumbNailId:String
+    userApp:UserApp
     videoList:[Video!]
 }
 

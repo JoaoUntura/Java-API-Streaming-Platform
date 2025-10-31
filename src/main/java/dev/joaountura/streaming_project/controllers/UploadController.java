@@ -3,6 +3,7 @@ package dev.joaountura.streaming_project.controllers;
 import dev.joaountura.streaming_project.models.dtos.CourseUploadDTO;
 import dev.joaountura.streaming_project.models.dtos.VideoUploadDTO;
 import dev.joaountura.streaming_project.producers.VideoTranscoderProducer;
+import dev.joaountura.streaming_project.security.AuthUtils;
 import dev.joaountura.streaming_project.services.CourseServices;
 import dev.joaountura.streaming_project.services.UploadServices;
 import dev.joaountura.streaming_project.services.VideoServices;
@@ -54,7 +55,7 @@ public class UploadController {
 
         String thumbNailId = uploadServices.uploadFile(courseUploadDTO.getThumbNail(),IMAGE_UPLOAD_DIR);
 
-        courseServices.createCourseService(courseUploadDTO, thumbNailId);
+        courseServices.createCourseService(courseUploadDTO, thumbNailId, AuthUtils.getCurrentUsername());
 
         return ResponseEntity.status(HttpStatus.OK).body("Uploaded");
 
