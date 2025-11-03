@@ -1,4 +1,4 @@
-# 🎬 Streaming Platform – README (English Version)
+# 🎬 Streaming Platform 
 
 This project is a **complete streaming platform**, built with modern technologies and focused on performance, scalability, and an exceptional user experience.
 
